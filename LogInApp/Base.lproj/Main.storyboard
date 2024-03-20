@@ -36,7 +36,6 @@
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="loginButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="YDE-Al-J5L"/>
                                             <segue destination="Cnx-ol-fu8" kind="presentation" modalPresentationStyle="fullScreen" id="wJN-Tf-7NN"/>
                                         </connections>
                                     </button>
