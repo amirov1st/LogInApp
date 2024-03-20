@@ -7,16 +7,16 @@
 
 import UIKit
 
-final class FirstScreenViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
     private let user = "Steeve"
-    private let password = "1,2,3"
+    private let password = "123"
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let secondScreenVC = segue.destination as? SecondScreenViewController
+        let secondScreenVC = segue.destination as? WelcomeViewController
         secondScreenVC?.userName = userNameTF.text
     }
     
@@ -34,7 +34,7 @@ final class FirstScreenViewController: UIViewController {
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        let secondScreenVC = segue.source as? SecondScreenViewController
+        let secondScreenVC = segue.source as? WelcomeViewController
         userNameTF.text = ""
         passwordTF.text = ""
     }

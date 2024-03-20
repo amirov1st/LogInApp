@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SecondScreenViewController: UIViewController {
+final class WelcomeViewController: UIViewController {
 
     @IBOutlet var greetingLabel: UILabel!
     @IBOutlet var emodjiLabel: UILabel!
