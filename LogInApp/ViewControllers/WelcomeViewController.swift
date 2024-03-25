@@ -12,11 +12,16 @@ final class WelcomeViewController: UIViewController {
     @IBOutlet var greetingLabel: UILabel!
     @IBOutlet var emodjiLabel: UILabel!
     
-    var userName: String!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        greetingLabel.text = "Welcome, \(userName ?? "")"
-        emodjiLabel.text = "👋"
+        view.addVerticalGradientLayer()
+        greetingLabel.text = """
+                Welcome, \(user.person.fullName)!
+                What a day, huh?
+                """
+        emodjiLabel.text = "👩🏼‍💻"
     }
 }
+

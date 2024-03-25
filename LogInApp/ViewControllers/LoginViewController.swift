@@ -12,20 +12,26 @@ final class LoginViewController: UIViewController {
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
-    private let user = "Steeve"
-    private let password = "123"
+    private let user = User.getUser()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        userNameTF.text = user.login
+        passwordTF.text = user.password
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let secondScreenVC = segue.destination as? WelcomeViewController
-        secondScreenVC?.userName = userNameTF.text
+        guard let tabBarVC = segue.destination as? TabBarViewContoller else { return }
+        tabBarVC.user = user
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard userNameTF.text == user, passwordTF.text == password else {
+        guard userNameTF.text == user.login, passwordTF.text == user.password else {
             showAlert(withTitle: "Invalid username or password", andMessage: "Please, enter correct username and password")
             passwordTF.text = ""
             return false
@@ -33,17 +39,15 @@ final class LoginViewController: UIViewController {
         return true
     }
     
-    @IBAction func unwind(for segue: UIStoryboardSegue) {
-        let secondScreenVC = segue.source as? WelcomeViewController
-        userNameTF.text = ""
-        passwordTF.text = ""
+    @IBAction func forgotRegisterData(_ sender: UIButton) {
+        sender.tag == 0
+        ? showAlert(withTitle: "Oops!", andMessage: "Your name is User 🙃")
+        : showAlert(withTitle: "Oops!", andMessage: "Your password is password 🙃")
     }
     
-    @IBAction func forgotUsernameButtonTapped() {
-        showAlert(withTitle: "Oops!", andMessage: "Your name is Steeve 🙃")
-    }
-    @IBAction func forgotPasswordButtonTapped() {
-        showAlert(withTitle: "Oops!", andMessage: "Your password is 123 🙃")
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        userNameTF.text = ""
+        passwordTF.text = ""
     }
     
     private func showAlert(withTitle title: String, andMessage message: String) {
@@ -55,11 +59,3 @@ final class LoginViewController: UIViewController {
         present(alert, animated: true)
     }
 }
-
-/* Questions:
- 1.  В с SecondScreenViewControler в storyboard я не понимаю почему верхний constreint
- для StackView идет до SuperView, хотя я явно указываю что мне надо до SafeArea.
- Тоже самое с нижним constreint для кнопки.
- 2.
- */
-
